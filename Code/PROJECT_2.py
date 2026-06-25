@@ -1,12 +1,11 @@
 # -*- coding: utf-8 -*-
 """
-PROJECT_2 — GPS spoofing detection engine (train / evaluate / predict / score).
+Converted from fix.ipynb to a local Python script.
 
 How to run:
-    python PROJECT_2.py
+    python fix.py
 
-CSV files are read from the sibling "DataSets" folder by default (see DATA_DIR below);
-edit DATA_DIR or the three file paths to point elsewhere.
+Put the CSV files in the same folder as this script, or edit the file paths below.
 """
 
 
@@ -44,20 +43,20 @@ warnings.filterwarnings("ignore")
 
 # %% Cell 2
 # ================================================================
+# CONFIGURATION (Rawan's human GPS bracelet setup)
 # Expected columns:
 #   session_id, gps_date, gps_time, latitude, longitude, velocity,
 #   course, satellites_in_view, satellites_used, hdop, label
 # label: 0 = normal, 1 = spoofed/fake
 # ================================================================
 BASE = os.path.dirname(os.path.abspath(__file__))
-# CSV files live in the sibling "DataSets" folder, next to this "Code" folder.
-DATA_DIR = os.path.join(os.path.dirname(BASE), "DataSets")
 
-DATASET_FILE = os.path.join(DATA_DIR, "GPS_Data_Mixed_40K.csv")
-UNLABELED_FILE = os.path.join(DATA_DIR, "GPS_Data_Mixed_Nolabel_7K.csv")
-TRUE_LABEL_FILE = os.path.join(DATA_DIR, "GPS_Data_Mixed_7K.csv")
+DATASET_FILE = os.path.join(BASE, "gps_data_spoofed.csv")
+UNLABELED_FILE = os.path.join(BASE, "gps_data7_spoofed_nolabel.csv")
+TRUE_LABEL_FILE = os.path.join(BASE, "gps_data7_spoofed.csv")
 
-# If your CSVs are somewhere else, just edit DATA_DIR above or the three file names.
+# For a local run, replace the three paths above with just the file names, e.g.:
+# DATASET_FILE = "gps_data_spoofed_3.csv"
 
 OUTPUT_DIR = "human_detection_outputs"
 RANDOM_STATE = 42
